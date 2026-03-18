@@ -75,6 +75,25 @@ export class EnquiryList implements OnInit {
     });
   }
 
+  onDelete(id: number) {
+    const isDelete = confirm("Are you sure you want to delete this enquiry?");
+    if (isDelete) {
+      this.masterServices.deleteEnquiry(id).subscribe({
+        next: (res) => {
+          if (res.result) {
+            alert("Enquiry deleted successfully");
+            this.getEnquiryList();
+          } else {
+            alert(res.message);
+          }
+        },
+        error: (err) => {
+          console.error('Error deleting enquiry:', err);
+        }
+      });
+    }
+  }
+
   nextPage() {
     if (this.currentPage() < this.totalPages()) {
       this.currentPage.update(p => p + 1);

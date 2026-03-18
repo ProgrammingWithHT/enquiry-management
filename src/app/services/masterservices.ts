@@ -57,4 +57,8 @@ export class Masterservices {
     return this.http.get<ApiResponse<Enquiry[]>>("https://api.freeprojectapi.com/api/Enquiry/get-enquiries");
   }
 
+  deleteEnquiry(id: number) {
+    return this.http.delete<ApiResponse<any>>(`https://api.freeprojectapi.com/api/Enquiry/delete-enquiry/${id}?id=${id}`);
+  }
+
 }
